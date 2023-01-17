@@ -9,7 +9,7 @@ Starts with the main menu:
 2. Services
 3. Exit
 
-Two main branch:
+Two main branches:
 1. Main menu > Food > Restaurant > Menu > Checkout > Main menu
 2. Main menu > Service > Location > Options > Checkout > Main menu
 
