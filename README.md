@@ -14,6 +14,15 @@ Two main branches:
 2. Main menu > Service > Location > Options > Checkout > Main menu
 
 ## Food
+- After choosing food in main menu, user is directed to a page to choose a restaurant they want to order from
+- User choose by inputting the number of one of the restaurants/locations displayed
+- Then, user is directed to the menu page
+- This is where user can look at the different meals available at chosen location
+- User is prompted to input a number for which meals they want to add or remove
+- After choosing the meal they can add the meal to their order by specifying the quantity or remove their previous order by inputting negative number
+- If user are done with their order, they can input q to proceed
+- The program then jumps to the checkout section
 
 ## Services
 
+## Checkout
