@@ -22,7 +22,19 @@ public class Input{
         return charInputPrompt("");
     }
     public static int intInputPrompt(String message){
-        return (charInputPrompt(message) - '0');
+        Scanner userInput = new Scanner(System.in);
+        int intInput = 0;
+        while(true){
+            try{
+                System.out.print(message + " > ");
+                intInput = userInput.nextInt();
+                break;
+            }catch(InputMismatchException ex){
+                Display.invalidInputMessage();
+                userInput.next();
+            }
+        }
+        return intInput;
     }
     public static int intInputPrompt(){
         return intInputPrompt("");

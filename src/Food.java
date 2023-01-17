@@ -1,8 +1,11 @@
 import utils.*;
 
 public class Food{
-public static String[] FoodLocation = 
+    public static String[] FoodLocation = 
         {"Delicious Pizza","Indo gepuk","Cafe Corner","Sushi Delight","Nacho Taco","Tomyam Shop","Thailicious","Grill Master","Food Mart","Jazmina Corner"};
+    public static double[] serviceFee ={
+        3.50, 4, 3.50, 4, 3.50, 4, 3.50, 4, 3.50, 4 
+    };
 
     public static int[] userOrderQuantity = new int[3];
 
@@ -28,7 +31,7 @@ public static String[] FoodLocation =
         locationChose = Input.intInputPrompt("Location") -1;
         locationChose = Math.abs(locationChose%FoodLocation.length);// input will always be valid
         orderFood();
-        Checkout.mainloop();
+        Checkout.foodCheckout(FoodItem[locationChose]);
     }
 
     public static void orderFood(){
@@ -36,7 +39,7 @@ public static String[] FoodLocation =
             Display.clearConsole();
             Display.appHeader();
             displayMenu(FoodItem[locationChose]);
-            displayCart(userOrderQuantity);
+            displayCart();
             char input = Input.charInputPrompt("Which item would you like to add or remove? (Enter q if you are done)\n");
             if(input == 'q') break;
             if(!Input.verifyInput(input,'1','2','3'))continue;// ignore invalid inputs
@@ -58,7 +61,7 @@ public static String[] FoodLocation =
         }
     }
 
-    public static void displayCart(int[] userOrderQuantity){
+    public static void displayCart(){
         System.out.println();
         System.out.println("Your orders: ");
         for(int i = 0; i < userOrderQuantity.length; i++){

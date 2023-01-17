@@ -5,6 +5,7 @@ public class CampusDeliveryExpress{
     public static void main(String[] args){
         //Main menu loop
         while(true){
+            Food.userOrderQuantity = new int[3];//reset userorder 
             Display.clearConsole();
             Display.appHeader();
             mainMenu();
@@ -13,7 +14,7 @@ public class CampusDeliveryExpress{
                 Food.mainloop();
             }
             else if(userInput == '2'){
-                //Services.mainloop();
+                Services.mainloop();
             }
             else if(userInput == '3'){//Exit
                 System.out.print("Are you sure you want to exit?(y/n):");
