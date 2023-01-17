@@ -10,8 +10,8 @@ Starts with the main menu:
 3. Exit
 
 Two main branch:
-Main menu > Food > Restaurant > Menu > Checkout > Main menu
-Main menu > Service > Location > Options > Checkout > Main menu
+1. Main menu > Food > Restaurant > Menu > Checkout > Main menu
+2. Main menu > Service > Location > Options > Checkout > Main menu
 
 ## Food
 
