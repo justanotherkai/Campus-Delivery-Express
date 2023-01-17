@@ -8,6 +8,7 @@ public class CampusDeliveryExpress{
             Display.clearConsole();
             Display.appHeader();
             mainMenu();
+        Services.main();
             char userInput = Input.charInputPrompt();
             if(userInput == '1'){
                 Food.mainloop();
