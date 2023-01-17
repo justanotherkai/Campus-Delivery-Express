@@ -25,7 +25,8 @@ public static String[] FoodLocation =
         Display.clearConsole();
         Display.appHeader();
         displayRestaurants(FoodLocation);
-        locationChose = Input.intInputPrompt("Location");
+        locationChose = Input.intInputPrompt("Location") -1;
+        locationChose = Math.abs(locationChose%FoodLocation.length);// input will always be valid
         orderFood();
         Checkout.mainloop();
     }
