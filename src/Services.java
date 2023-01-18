@@ -14,6 +14,6 @@ public class Services{
         Display.clearConsole();
         Display.appHeader();
         System.out.println("Services: Coming Soon");
-        Input.charInputPrompt("input anything");
+        Input.charInputPrompt("");
     }
 }

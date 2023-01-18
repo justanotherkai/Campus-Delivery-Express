@@ -70,6 +70,6 @@ public class Checkout{
     //update stock in FoodItem
     public static void updateStock(String[][] itemList){
         System.out.println("Stock was updated");
-        Input.charInputPrompt("input anything");
+        Input.charInputPrompt("");
     }
 }
