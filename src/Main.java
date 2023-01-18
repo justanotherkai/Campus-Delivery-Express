@@ -15,9 +15,9 @@ public class Main{
         //Main menu loop
         while(true){
             Food.userOrderQuantity = new int[3];//reset userorder 
-            Display.clearConsole();
-            Display.appHeader();
-            mainMenu();
+            Display.clearConsole();//clears console
+            Display.appHeader();//display app header banner
+            mainMenu();//display main menu options
             char userInput = Input.charInputPrompt();
             if(userInput == '1'){
                 Food.mainloop();
@@ -29,8 +29,6 @@ public class Main{
                 System.out.print("Are you sure you want to exit?(y/n):");
                 if(Input.charInputPrompt() == 'y') break;
             }
-            else
-                Display.invalidInputMessage();
         }
     }
     public static void mainMenu(){
