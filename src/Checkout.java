@@ -22,24 +22,24 @@ public class Checkout{
         Display.appHeader();
         Food.displayCart();
         checkFoodStock(Food.userOrderQuantity, FoodItemList);
-        String[] receiptDetails = calcAndDispPrice(Food.userOrderQuantity, FoodItemList, Food.serviceFee[Food.locationChose]);
-        printReceipt(receiptDetails, Food.FoodLocation[Food.locationChose]);
+        String[] receiptDetails = calcAndDispPrice(Food.userOrderQuantity, FoodItemList, Food.serviceFee[Food.chosenRestaurantIndex]);
+        printReceipt(receiptDetails, Food.restaurants[Food.chosenRestaurantIndex]);
         updateStock(Food.userOrderQuantity, FoodItemList);
     }
 
-    // public static void servicesCheckout(String[][] servicesList){
-    //     while(true){
-    //         Display.clearConsole();
-    //         Display.appHeader();
-    //         Services.displayCart(Services.userOrderQuantity);
-    //         if(Input.charInputPrompt("Would you like to edit your orders? (y/n)") == 'y'){
-    //             Services.orderServices();
-    //             continue;
-    //         }
-    //     }
-    //     calcAndDispPrice(Services.userOrderQuantity, servicesList, serviceFee);
-    //     updateStock(servicesList);
-    // }
+     public static void servicesCheckout(String[][] servicesList){
+         while(true){
+             Display.clearConsole();
+             Display.appHeader();
+             Services.displayCart();
+             if(Input.charInputPrompt("Would you like to edit your orders? (y/n)") == 'y')
+                 Services.orderServices();
+             else
+                 break;
+         }
+         String[] receiptDetails = calcAndDispPrice(Services.userOrderQuantity, servicesList, Services.serviceFee[Services.chosenLocationIndex]);
+         printReceipt(receiptDetails,Services.locations[Services.chosenLocationIndex]);
+     }
 
     //this function checks if the stock of user's orders are available
     //prompt the user to update their cart and return false, if stock unavailable
@@ -83,12 +83,13 @@ public class Checkout{
             }
         }
         totalCost += serviceFee;
-        String serviceFeeAmt = "Service fee : RM" + String.format("%.2f", serviceFee);
+        String serviceFeeAmt = "\nService fee : RM" + String.format("%.2f", serviceFee);
         System.out.println(serviceFeeAmt);
         receiptDetails[MAX_RECEIPT_LENGTH - 2] = serviceFeeAmt;
 
         String totalCostAmt = "Total : RM" + String.format("%.2f", totalCost);
         System.out.println(totalCostAmt);
+        Input.charInputPrompt("Input anything to go back to main menu");
         receiptDetails[MAX_RECEIPT_LENGTH - 1] = totalCostAmt;
         return receiptDetails;
     }
@@ -117,10 +118,8 @@ public class Checkout{
 
     //update stock in FoodItem
     public static void updateStock(int[] userOrderQuantity, String[][] itemList){
-        System.out.println("Stock of " + itemList[0][0] + " is " + itemList[0][2]);
         for(int i = 0; i < itemList.length; i++){
             itemList[i][2] = Integer.toString(Integer.parseInt(itemList[i][2])-userOrderQuantity[i]);
         }
-        System.out.println("Stock of " + itemList[0][0] + " is " + itemList[0][2]);
     }
 }
