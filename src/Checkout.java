@@ -16,28 +16,41 @@ import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 public class Checkout{
     final static int MAX_RECEIPT_LENGTH = 13;
 
+    //checkout method after exiting Food.mainloop
     public static void foodCheckout(String[][] FoodItemList){
         Display.clearConsole();
         Display.appHeader();
         Food.displayCart();
+
+        // check stocks, allow user to proceed if everything is fine
         checkFoodStock(Food.userOrderQuantity, FoodItemList);
+
+        // calculate prices and display to user, then put arrays of the informations inside receiptDetails
         String[] receiptDetails = calcAndDispPrice(Food.userOrderQuantity, FoodItemList, Food.serviceFee[Food.chosenRestaurantIndex]);
+
+        // print receipt to a txt file in .\receipts
         printReceipt(receiptDetails, Food.restaurants[Food.chosenRestaurantIndex]);
+
         updateStock(Food.userOrderQuantity, FoodItemList);
     }
 
-     public static void servicesCheckout(String[][] servicesList){
-         while(true){
+    //checkout method after exiting Services.mainloop
+    public static void servicesCheckout(String[][] servicesList){
+         while(true){// display user's cart then prompt them if they want to update it
              Display.clearConsole();
              Display.appHeader();
              Services.displayCart();
              if(Input.charInputPrompt("Would you like to edit your orders? (y/n)") == 'y')
                  Services.orderServices();
              else
-                 break;
+                 break;// break the loop if user doesn't input 'y'
          }
-         String[] receiptDetails = calcAndDispPrice(Services.userOrderQuantity, servicesList, Services.serviceFee[Services.chosenLocationIndex]);
-         printReceipt(receiptDetails,Services.locations[Services.chosenLocationIndex]);
+
+        // calculate prices, display to user, then put arrays of the infos inside receiptDetails
+        String[] receiptDetails = calcAndDispPrice(Services.userOrderQuantity, servicesList, Services.serviceFee[Services.chosenLocationIndex]);
+
+        // print receipts to a txt file in .\receipts
+        printReceipt(receiptDetails,Services.locations[Services.chosenLocationIndex]);
      }
 
     //this function checks if the stock of user's orders are available
@@ -93,7 +106,7 @@ public class Checkout{
         return receiptDetails;
     }
 
-    //print receipt in a txt file
+    // print receipt based on receiptDetails[] to a txt file in .\receipts 
     public static void printReceipt(String[] receiptDetails, String location){
         String straightLine = "\n---------------------------------------------\n";
         //create a string for date and time with a certain format using LocalDateTIme and DateTimeFormatter objects

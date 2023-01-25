@@ -17,6 +17,8 @@ public class Main{
             Display.clearConsole();//clears console
             Display.appHeader();//display app header banner
             mainMenu();//display main menu options
+
+            //Process user input
             char userInput = Input.charInputPrompt();
             if(userInput == '1'){
                 Food.mainloop();

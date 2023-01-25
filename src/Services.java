@@ -23,23 +23,34 @@ public class Services{
     public static int chosenLocationIndex = 0;
 
     public static void mainloop(){
+        // initialize locations[] serviceFee[] servicesItem[] and userOrderQuantity[] based on data files
         initArrays();
+
         Display.clearConsole();
         Display.appHeader();
+
+        // let user choose a service location
         displayLocations(locations);
         chosenLocationIndex = Input.intInputPrompt("Location") -1;
         chosenLocationIndex = Math.abs(chosenLocationIndex%locations.length);// input will always be valid
+
+        // loop that shows user the services option from chosen location and let them update their orders
         orderServices();
+
+        // proceed to checkout if user is done
         Checkout.servicesCheckout(servicesItem[chosenLocationIndex]);
     }
 
+    // initialize locations[] serviceFee[] servicesItem[] and userOrderQuantity[] based on csv files in .\data\ 
     public static void initArrays(){
+        // temporary arrays with big lengths that will store data from csv files before transferring to the actual arrays
         String[] tempLocationList = new String[MAX_LOCATION];
         Double[] tempServiceFee = new Double[MAX_LOCATION];
         String[][][] tempFoodItem = new String[MAX_LOCATION][MAX_ITEMS_PER_LOCATION][3];
         int locationCount = 0;
         
         try{
+            // get locations[] and serviceFee[] from serviceLocations.csv
             File locationList = new File(".\\data\\serviceLocations.csv");
             Scanner readLocations = new Scanner(locationList);
             while(readLocations.hasNextLine()){
@@ -56,6 +67,7 @@ public class Services{
             
             servicesItem = new String[locationCount][][];
 
+            // get servicesItem[] from serviceList.csv
             File servicesList = new File(".\\data\\serviceList.csv");
             Scanner readServices = new Scanner(servicesList);
             
@@ -82,27 +94,32 @@ public class Services{
             serviceFee =  new Double[locationCount];
             System.arraycopy(tempLocationList,0,locations,0,locationCount);
             System.arraycopy(tempServiceFee,0,serviceFee,0,locationCount);
-            userOrderQuantity = new int[locationCount];
+
+            userOrderQuantity = new int[locationCount];// set userOrderQuantity length based on number of locations
 
         }catch(FileNotFoundException ex){
             System.out.println(ex);
         }
     }
     
-
+    // show services options, user orders, then let them update their orders in a loop
     public static void orderServices(){
         while(true){
             Display.clearConsole();
             Display.appHeader();
-            displayServices(servicesItem[chosenLocationIndex]);
-            displayCart();
+            displayServices(servicesItem[chosenLocationIndex]);// display the service options based on chosen location
+            displayCart();// display their carts underneath the options
+
+            // let user add or remove order and quit once they are done, by inputting characters
             char input = Input.charInputPrompt("Which item would you like to add or remove? (Enter q if you are done)\n");
             if(input == 'q') break;
             if((input-'0') < 0 || (input-'0' > servicesItem[chosenLocationIndex].length))continue;// ignore invalid inputs
             addItemToUserOrder(input);
-        }
+        }// the loop continues until user inputs 'q'
     }
 
+
+    //display service locations list based on locations[] array
     public static void displayLocations(String[] locationNames){
         System.out.println("Locations: ");
         for(int i = 0; i < locationNames.length; i++){
@@ -110,6 +127,7 @@ public class Services{
         }
     }
 
+    //display service options based on servicesItem[chosenLocationIndex]
     public static void displayServices(String[][] serviceList){
         System.out.printf("%3s%-50s Price\n","","Name");
         for(int i = 0; i < serviceList.length; i++){
@@ -117,6 +135,7 @@ public class Services{
         }
     }
 
+    // display user's orders
     public static void displayCart(){
         System.out.println();
         System.out.println("Your orders: ");
@@ -126,6 +145,7 @@ public class Services{
         System.out.println();
     }
 
+    // let user add or remove items from their cart/order
     public static void addItemToUserOrder(char input){
         int inputNum = input - '0';// convert char to int
         inputNum -= 1;// to compensate since index starts with zero, but input option starts with one
