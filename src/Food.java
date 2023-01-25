@@ -53,7 +53,8 @@ public class Food{
                 }
                 seperator.close();
             }
-            
+            readRestaurants.close();
+
             foodItem = new String[restaurantCount][][];
 
             File restaurantMealsList = new File(".\\data\\restaurantMeals.csv");
@@ -76,6 +77,7 @@ public class Food{
                 restaurantIndex++;
                 seperator.close();
             }
+            readMeals.close();
 
             restaurants = new String[restaurantCount];
             serviceFee =  new Double[restaurantCount];

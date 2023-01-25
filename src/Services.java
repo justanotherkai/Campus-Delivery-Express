@@ -52,6 +52,7 @@ public class Services{
                 }
                 seperator.close();
             }
+            readLocations.close();
             
             servicesItem = new String[locationCount][][];
 
@@ -75,6 +76,7 @@ public class Services{
                 locationIndex++;
                 seperator.close();
             }
+            readServices.close();
 
             locations = new String[locationCount];
             serviceFee =  new Double[locationCount];

@@ -44,6 +44,7 @@ public class Display{
             while (sc.hasNextLine()){
                 System.out.println(sc.nextLine());
             }
+            sc.close();
         }catch(FileNotFoundException ex){
             System.out.println(ex);
         }
