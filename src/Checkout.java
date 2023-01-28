@@ -32,7 +32,7 @@ public class Checkout{
         // print receipt to a txt file in .\receipts
         printReceipt(receiptDetails, Food.restaurants[Food.chosenRestaurantIndex]);
 
-        updateStock(Food.userOrderQuantity, FoodItemList);
+        updateStock(Food.userOrderQuantity, Food.chosenRestaurantIndex);
     }
 
     //checkout method after exiting Services.mainloop
