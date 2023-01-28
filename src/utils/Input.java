@@ -24,7 +24,6 @@ public class Input{
                 userInput.next();
             }
         }
-        userInput.close();
         return charInput;
     }
 
@@ -44,7 +43,6 @@ public class Input{
                 userInput.next();
             }
         }
-        userInput.close();
         return intInput;
     }
     public static int intInputPrompt(){// int type without message
