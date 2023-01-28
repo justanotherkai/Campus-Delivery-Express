@@ -8,7 +8,7 @@
 4. Type in this command > java -jar .\dist\CampusDeliveryExpress.jar
 5. The program should be running, maximize the cmd window for best experience
 
-## Program flow chart
+## Program flow chart *outdated*
 
 ![diagram 1](/data/flowcharts/Diagram_1.png)
 
@@ -20,4 +20,3 @@
 
 ![diagram 5](/data/flowcharts/Diagram_5.png)
 
-* outdated
