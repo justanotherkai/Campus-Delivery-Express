@@ -9,6 +9,7 @@
  */
 import utils.*;
 import java.io.*;
+import java.util.Scanner;
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 
@@ -128,10 +129,38 @@ public class Checkout{
         }
     }
 
-    //update stock in FoodItem
-    public static void updateStock(int[] userOrderQuantity, String[][] itemList){
-        for(int i = 0; i < itemList.length; i++){
-            itemList[i][2] = Integer.toString(Integer.parseInt(itemList[i][2])-userOrderQuantity[i]);
+    //update stock in restaurantMeals.csv
+    public static void updateStock(int[] userOrderQuantity, int chosenRestaurantIndex){
+        try{
+            File restaurantMeals = new File(".\\data\\restaurantMeals.csv");
+            File tempFile = new File(".\\data\\temp");
+            Scanner duplicate = new Scanner(restaurantMeals);
+            PrintWriter update = new PrintWriter(tempFile);
+            
+            int line = 0, column = 1;
+            while(duplicate.hasNextLine()){
+                if(line == chosenRestaurantIndex){
+                    Scanner seperator = new Scanner(duplicate.nextLine());
+                    seperator.useDelimiter(",");
+                    String temp = "";
+                    while(seperator.hasNext()){
+                        if(column%3 == 0) temp += Integer.parseInt(seperator.next()) - userOrderQuantity[column / 3 - 1] + ",";
+                        else temp += seperator.next() + ",";
+                        column++;
+                    }
+                    update.println(temp);
+                }else{
+                    update.println(duplicate.nextLine());
+                }
+                line++;
+            }
+            duplicate.close();
+            update.close();
+            if(!restaurantMeals.delete()) System.out.println("Unable to delete restaurantMeals.csv");
+            if(!tempFile.renameTo(restaurantMeals)) System.out.println("Unable to rename tempFile to restaurantMeals.csv");
+
+        }catch(FileNotFoundException ex){
+            System.out.println("Stock update failed: restaurantMeals.csv was not found");
         }
     }
 }
