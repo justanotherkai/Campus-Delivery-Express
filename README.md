@@ -10,10 +10,14 @@
 
 ## Program flow chart
 
-![](.\data\flowcharts\Diagram_1.png)
-![](.\data\flowcharts\Diagram_2.png)
-![](.\data\flowcharts\Diagram_3.png)
-![](.\data\flowcharts\Diagram_4.png)
-![](.\data\flowcharts\Diagram_5.png)
+![diagram 1](\data\flowcharts\Diagram_1.png)
+
+![diagram 2](\data\flowcharts\Diagram_2.png)
+
+![diagram 3](\data\flowcharts\Diagram_3.png)
+
+![diagram 4](\data\flowcharts\DIagram_4.png)
+
+![diagram 5](\data\flowcharts\Diagram_5.png)
 
 * outdated
